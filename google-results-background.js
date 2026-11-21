@@ -21,12 +21,13 @@
     #searchform, #appbar, #top_nav, #top_nav > *, #search, #rso,
     #search * , #rso * {
       background-color: transparent !important;
-      color: #ffe9a6 !important;
+      color: #f9c64a !important;
     }
     #search, #rso { border: 0 !important; padding: 18px !important; }
-    body *, body *::before, body *::after { color: #ffe9a6 !important; }
-    #search *, #rso *, #appbar *, #top_nav *, #rhs *, #botstuff *, #foot * { color: #ffe9a6 !important; text-shadow: 0 2px 4px #000 !important; }
-    #search a:visited, #rso a:visited { color: #e7ca7a !important; }
+    body *, body *::before, body *::after { color: #f9c64a !important; }
+    #search *, #rso *, #appbar *, #top_nav *, #rhs *, #botstuff *, #foot * { color: #f9c64a !important; text-shadow: 0 2px 4px #000 !important; }
+    #search a:visited, #rso a:visited { color: #f9c64a !important; }
+    mark, em, [role="mark"] { background: transparent !important; color: inherit !important; font-style: inherit !important; font-weight: inherit !important; }
   `;
 
   const makeWhiteSurfacesBlack = root => {
@@ -38,9 +39,18 @@
       const [red, green, blue, alpha = '1'] = match[1].split(',').map(value => Number(value.trim()));
       if (red > 220 && green > 220 && blue > 220 && alpha > 0.6) {
         element.style.setProperty('background-color', '#160d13', 'important');
-        element.style.setProperty('color', '#ffe9a6', 'important');
+        element.style.setProperty('color', '#f9c64a', 'important');
         element.style.setProperty('border-color', '#8d6716', 'important');
       }
+    });
+  };
+
+  const hideAiOverview = root => {
+    if (!root.querySelectorAll) return;
+    root.querySelectorAll('*').forEach(element => {
+      if (element.children.length || element.textContent.trim() !== 'AI Overview') return;
+      const resultModule = element.closest('.MjjYud');
+      if (resultModule) resultModule.style.setProperty('display', 'none', 'important');
     });
   };
 
@@ -51,9 +61,13 @@
       document.head.append(style);
     }
     makeWhiteSurfacesBlack(document.body);
+    hideAiOverview(document);
     const observer = new MutationObserver(records => {
       records.forEach(record => record.addedNodes.forEach(node => {
-        if (node.nodeType === Node.ELEMENT_NODE) makeWhiteSurfacesBlack(node);
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          makeWhiteSurfacesBlack(node);
+          hideAiOverview(node);
+        }
       }));
     });
     observer.observe(document.body, { childList: true, subtree: true });
