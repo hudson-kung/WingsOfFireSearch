@@ -28,6 +28,7 @@
     #search *, #rso *, #appbar *, #top_nav *, #rhs *, #botstuff *, #foot * { color: #f9c64a !important; text-shadow: 0 2px 4px #000 !important; }
     #search a:visited, #rso a:visited { color: #f9c64a !important; }
     mark, em, [role="mark"] { background: transparent !important; color: inherit !important; font-style: inherit !important; font-weight: inherit !important; }
+    #search, #search *, #rso, #rso *, #rhs, #rhs *, #appbar, #appbar *, #top_nav, #top_nav *, #botstuff, #botstuff *, #foot, #foot *, input, textarea, button { font-family: Georgia, "Times New Roman", serif !important; }
   `;
 
   const makeWhiteSurfacesBlack = root => {
@@ -37,10 +38,13 @@
       const match = getComputedStyle(element).backgroundColor.match(/rgba?\(([^)]+)\)/);
       if (!match) return;
       const [red, green, blue, alpha = '1'] = match[1].split(',').map(value => Number(value.trim()));
-      if (red > 220 && green > 220 && blue > 220 && alpha > 0.6) {
-        element.style.setProperty('background-color', '#160d13', 'important');
+      const hasGlowGradient = getComputedStyle(element).backgroundImage.includes('gradient');
+      if ((red > 220 && green > 220 && blue > 220 && alpha > 0.6) || hasGlowGradient) {
+        element.style.setProperty('background', '#160d13', 'important');
         element.style.setProperty('color', '#f9c64a', 'important');
         element.style.setProperty('border-color', '#8d6716', 'important');
+        element.style.setProperty('box-shadow', 'none', 'important');
+        element.style.setProperty('filter', 'none', 'important');
       }
     });
   };
