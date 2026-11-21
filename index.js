@@ -5,6 +5,10 @@ const preferences = JSON.parse(localStorage.getItem(storageKey) || '{"newTab":fa
 const background = localStorage.getItem('fanwing-background') || 'assets/backgrounds/darkstalker.png';
 
 document.body.style.backgroundImage = `url("${background}")`;
+chrome.storage.local.get({ fanwingBackground: background }, ({ fanwingBackground }) => {
+  document.body.style.backgroundImage = `url("${fanwingBackground}")`;
+  localStorage.setItem('fanwing-background', fanwingBackground);
+});
 document.getElementById('clear-search').addEventListener('click', () => {
   input.value = '';
   input.focus();

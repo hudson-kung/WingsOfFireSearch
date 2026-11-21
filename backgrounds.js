@@ -3,6 +3,7 @@ const current = localStorage.getItem('fanwing-background') || 'assets/background
 
 function select(image, name) {
   localStorage.setItem('fanwing-background', image);
+  chrome.storage.local.set({ fanwingBackground: image });
   cards.forEach(card => card.classList.toggle('selected', card.dataset.image === image));
   document.getElementById('notice').textContent = `${name} selected. Return to search to see it.`;
 }
