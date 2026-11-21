@@ -81,7 +81,7 @@
     logoLink.setAttribute('aria-label', 'Back to Wings of Fire Search');
     logoLink.addEventListener('click', event => {
       event.preventDefault();
-      window.location.assign(chrome.runtime.getURL('index.html'));
+      chrome.runtime.sendMessage({ type: 'open-wings-of-fire-home' });
     });
   };
 
