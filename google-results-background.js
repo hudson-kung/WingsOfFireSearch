@@ -29,12 +29,34 @@
     #search a:visited, #rso a:visited { color: #e7ca7a !important; }
   `;
 
+  const makeWhiteSurfacesBlack = root => {
+    const elements = root.querySelectorAll ? [root, ...root.querySelectorAll('*')] : [];
+    elements.forEach(element => {
+      if (!(element instanceof HTMLElement)) return;
+      const match = getComputedStyle(element).backgroundColor.match(/rgba?\(([^)]+)\)/);
+      if (!match) return;
+      const [red, green, blue, alpha = '1'] = match[1].split(',').map(value => Number(value.trim()));
+      if (red > 220 && green > 220 && blue > 220 && alpha > 0.6) {
+        element.style.setProperty('background-color', '#160d13', 'important');
+        element.style.setProperty('color', '#ffe9a6', 'important');
+        element.style.setProperty('border-color', '#8d6716', 'important');
+      }
+    });
+  };
+
   const addTheme = () => {
     if (!document.getElementById(background.id)) document.body.prepend(background);
     if (!document.getElementById('wings-of-fire-results-style')) {
       style.id = 'wings-of-fire-results-style';
       document.head.append(style);
     }
+    makeWhiteSurfacesBlack(document.body);
+    const observer = new MutationObserver(records => {
+      records.forEach(record => record.addedNodes.forEach(node => {
+        if (node.nodeType === Node.ELEMENT_NODE) makeWhiteSurfacesBlack(node);
+      }));
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
   };
 
   if (document.body) addTheme();
