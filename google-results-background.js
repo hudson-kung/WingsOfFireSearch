@@ -58,6 +58,21 @@
     });
   };
 
+  const softenShowMoreBackdrop = root => {
+    if (!root.querySelectorAll) return;
+    root.querySelectorAll('*').forEach(element => {
+      if (element.children.length || element.textContent.trim() !== 'Show more') return;
+      const module = element.closest('.MjjYud') || element.closest('[data-ved]');
+      if (!module) return;
+      module.style.setProperty('background', 'rgba(22, 13, 19, .48)', 'important');
+      module.querySelectorAll('*').forEach(child => {
+        if (child.style.background.includes('#160d13')) {
+          child.style.setProperty('background', 'transparent', 'important');
+        }
+      });
+    });
+  };
+
   const replaceGoogleLogo = () => {
     if (document.documentElement.dataset.wingsOfFireLogoReplaced === 'true') return;
     const logoLink = [...document.querySelectorAll('a')]
@@ -100,12 +115,14 @@
     }
     makeWhiteSurfacesBlack(document.body);
     hideAiOverview(document);
+    softenShowMoreBackdrop(document);
     replaceGoogleLogo();
     const observer = new MutationObserver(records => {
       records.forEach(record => record.addedNodes.forEach(node => {
         if (node.nodeType === Node.ELEMENT_NODE) {
           makeWhiteSurfacesBlack(node);
           hideAiOverview(node);
+          softenShowMoreBackdrop(node);
           replaceGoogleLogo();
         }
       }));
