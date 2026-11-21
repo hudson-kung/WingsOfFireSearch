@@ -5,7 +5,7 @@
     'position:fixed',
     'inset:0',
     'z-index:0',
-    'background-image:linear-gradient(rgba(22,13,19,.68),rgba(22,13,19,.78)),url("' + chrome.runtime.getURL('assets/backgrounds/darkstalker.png') + '")',
+    'background-image:url("' + chrome.runtime.getURL('assets/backgrounds/darkstalker.png') + '")',
     'background-size:cover',
     'background-position:center',
     'background-attachment:fixed'
@@ -18,12 +18,13 @@
     body > *:not(#wings-of-fire-results-background) { position: relative !important; z-index: 1; }
     #wings-of-fire-results-background { pointer-events: none !important; }
     #viewport, #main, #rcnt, #center_col, #rhs, #botstuff, #foot,
-    #searchform, #appbar, #top_nav, #top_nav > *, #search, #rso {
-      background-color: #160d13 !important;
+    #searchform, #appbar, #top_nav, #top_nav > *, #search, #rso,
+    #search * , #rso * {
+      background-color: transparent !important;
       color: #ffe9a6 !important;
     }
-    #search, #rso { border: 1px solid #8d6716 !important; border-radius: 12px; padding: 18px !important; }
-    #search *, #rso *, #appbar *, #top_nav *, #rhs *, #botstuff *, #foot * { color: #ffe9a6 !important; text-shadow: none !important; }
+    #search, #rso { border: 0 !important; padding: 18px !important; }
+    #search *, #rso *, #appbar *, #top_nav *, #rhs *, #botstuff *, #foot * { color: #ffe9a6 !important; text-shadow: 0 2px 4px #000 !important; }
     #search a:visited, #rso a:visited { color: #e7ca7a !important; }
   `;
 
