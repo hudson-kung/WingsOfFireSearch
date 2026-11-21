@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Wings of Fire Search",
+  "version": "1.0.0",
+  "description": "A Wings of Fire themed search page for every new tab.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "icons": {
+    "16": "assets/fanwing-crest.png",
+    "32": "assets/fanwing-crest.png",
+    "48": "assets/fanwing-crest.png",
+    "128": "assets/fanwing-crest.png"
+  }
+}
