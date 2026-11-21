@@ -48,25 +48,10 @@
         <label class="field" for="query">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.5 3a6.5 6.5 0 1 0 4.1 11.54l4.43 4.43 1.41-1.41-4.43-4.43A6.5 6.5 0 0 0 9.5 3m0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9"/></svg>
           <input id="query" name="q" type="search" placeholder="Search the Library of Clearsight" autocomplete="off" autofocus />
-          <button class="clear" type="button" aria-label="Clear search" onclick="document.getElementById('query').value='';document.getElementById('query').focus()">×</button>
+          <button class="clear" id="clear-search" type="button" aria-label="Clear search">×</button>
         </label>
       </form>
     </main>
-    <script>
-      const form = document.getElementById('search-form');
-      const input = document.getElementById('query');
-      const storageKey = 'fanwing-settings';
-      const preferences = JSON.parse(localStorage.getItem(storageKey) || '{"newTab":false,"luckyDefault":false}');
-      const background = localStorage.getItem('fanwing-background') || 'assets/backgrounds/darkstalker.png';
-      document.body.style.backgroundImage = `url("${background}")`;
-      function search(lucky) {
-        const q = input.value.trim();
-        if (!q) { input.focus(); return; }
-        const url = `https://www.google.com/search?${lucky ? 'btnI=1&' : ''}q=${encodeURIComponent(q)}`;
-        if (preferences.newTab) window.open(url, '_blank', 'noopener');
-        else location.href = url;
-      }
-      form.addEventListener('submit', event => { event.preventDefault(); search(preferences.luckyDefault); });
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>

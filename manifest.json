@@ -6,6 +6,19 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/search*"],
+      "js": ["google-results-background.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/backgrounds/darkstalker.png"],
+      "matches": ["https://www.google.com/*"]
+    }
+  ],
   "icons": {
     "16": "assets/fanwing-crest.png",
     "32": "assets/fanwing-crest.png",
