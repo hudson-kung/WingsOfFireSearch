@@ -24,6 +24,7 @@
       color: #ffe9a6 !important;
     }
     #search, #rso { border: 0 !important; padding: 18px !important; }
+    body *, body *::before, body *::after { color: #ffe9a6 !important; }
     #search *, #rso *, #appbar *, #top_nav *, #rhs *, #botstuff *, #foot * { color: #ffe9a6 !important; text-shadow: 0 2px 4px #000 !important; }
     #search a:visited, #rso a:visited { color: #e7ca7a !important; }
   `;
