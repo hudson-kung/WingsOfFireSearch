@@ -75,9 +75,9 @@
     logoLink.replaceChildren();
     Object.assign(logoLink.style, {
       display: 'block',
-      width: '52px',
-      height: '52px',
-      minWidth: '52px',
+      width: '104px',
+      height: '104px',
+      minWidth: '104px',
       margin: '0 20px',
       backgroundImage: `url("${chrome.runtime.getURL('assets/fanwing-crest.png')}")`,
       backgroundSize: 'contain',
