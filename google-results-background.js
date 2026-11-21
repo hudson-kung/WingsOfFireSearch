@@ -17,10 +17,14 @@
     body { background-color: transparent !important; }
     body > *:not(#wings-of-fire-results-background) { position: relative !important; z-index: 1; }
     #wings-of-fire-results-background { pointer-events: none !important; }
-    #viewport, #main, #rcnt, #center_col, #rhs, #botstuff, #foot { background-color: transparent !important; }
-    #searchform, #appbar, #top_nav, #top_nav > *, #foot, #botstuff { background-color: rgba(255, 255, 255, .95) !important; }
-    #search, #rso { background: rgba(255, 255, 255, .94) !important; border-radius: 12px; padding: 18px !important; color: #202124 !important; }
-    #search h3, #search a, #search span, #search div { text-shadow: none !important; }
+    #viewport, #main, #rcnt, #center_col, #rhs, #botstuff, #foot,
+    #searchform, #appbar, #top_nav, #top_nav > *, #search, #rso {
+      background-color: #160d13 !important;
+      color: #ffe9a6 !important;
+    }
+    #search, #rso { border: 1px solid #8d6716 !important; border-radius: 12px; padding: 18px !important; }
+    #search *, #rso *, #appbar *, #top_nav *, #rhs *, #botstuff *, #foot * { color: #ffe9a6 !important; text-shadow: none !important; }
+    #search a:visited, #rso a:visited { color: #e7ca7a !important; }
   `;
 
   const addTheme = () => {
