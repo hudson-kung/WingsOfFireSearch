@@ -94,6 +94,7 @@
       height: '104px',
       minWidth: '104px',
       margin: '0 20px',
+      transform: 'translateY(-32px)',
       backgroundImage: `url("${chrome.runtime.getURL('assets/fanwing-crest.png')}")`,
       backgroundSize: 'contain',
       backgroundPosition: 'center',
