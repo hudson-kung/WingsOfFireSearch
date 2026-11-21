@@ -15,7 +15,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["assets/backgrounds/darkstalker.png"],
+      "resources": ["assets/backgrounds/darkstalker.png", "assets/fanwing-crest.png"],
       "matches": ["https://www.google.com/*"]
     }
   ],

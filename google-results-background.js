@@ -58,6 +58,33 @@
     });
   };
 
+  const replaceGoogleLogo = () => {
+    const logoLink = [...document.querySelectorAll('a')].find(link => {
+      const label = link.getAttribute('aria-label') || '';
+      const imageAlt = link.querySelector('img')?.alt || '';
+      return /google/i.test(label) || /google/i.test(imageAlt);
+    });
+    if (!logoLink || logoLink.dataset.wingsOfFireLogo === 'true') return;
+
+    logoLink.dataset.wingsOfFireLogo = 'true';
+    logoLink.replaceChildren();
+    Object.assign(logoLink.style, {
+      display: 'block',
+      width: '44px',
+      height: '44px',
+      minWidth: '44px',
+      backgroundImage: `url("${chrome.runtime.getURL('assets/fanwing-crest.png')}")`,
+      backgroundSize: 'contain',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    });
+    logoLink.setAttribute('aria-label', 'Back to Wings of Fire Search');
+    logoLink.addEventListener('click', event => {
+      event.preventDefault();
+      window.location.assign(chrome.runtime.getURL('index.html'));
+    });
+  };
+
   const addTheme = () => {
     if (!document.getElementById(background.id)) document.body.prepend(background);
     if (!document.getElementById('wings-of-fire-results-style')) {
@@ -66,11 +93,13 @@
     }
     makeWhiteSurfacesBlack(document.body);
     hideAiOverview(document);
+    replaceGoogleLogo();
     const observer = new MutationObserver(records => {
       records.forEach(record => record.addedNodes.forEach(node => {
         if (node.nodeType === Node.ELEMENT_NODE) {
           makeWhiteSurfacesBlack(node);
           hideAiOverview(node);
+          replaceGoogleLogo();
         }
       }));
     });
