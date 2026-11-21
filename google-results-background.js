@@ -113,9 +113,6 @@
     observer.observe(document.body, { childList: true, subtree: true });
   };
 
-  chrome.storage.local.get({ googleThemeEnabled: true }, ({ googleThemeEnabled }) => {
-    if (!googleThemeEnabled) return;
-    if (document.body) addTheme();
-    else document.addEventListener('DOMContentLoaded', addTheme, { once: true });
-  });
+  if (document.body) addTheme();
+  else document.addEventListener('DOMContentLoaded', addTheme, { once: true });
 })();
