@@ -29,6 +29,7 @@
     #search a:visited, #rso a:visited { color: #f9c64a !important; }
     mark, em, [role="mark"] { background: transparent !important; color: inherit !important; font-style: inherit !important; font-weight: inherit !important; }
     #search, #search *, #rso, #rso *, #rhs, #rhs *, #appbar, #appbar *, #top_nav, #top_nav *, #botstuff, #botstuff *, #foot, #foot *, input, textarea, button { font-family: Georgia, "Times New Roman", serif !important; }
+    #searchform, #appbar, #gb { transform: translateY(-64px) !important; }
   `;
 
   const makeWhiteSurfacesBlack = root => {
