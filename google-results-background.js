@@ -18,9 +18,9 @@
     body > *:not(#wings-of-fire-results-background) { position: relative !important; z-index: 1; }
     #wings-of-fire-results-background { pointer-events: none !important; }
     #viewport, #main, #rcnt, #center_col, #rhs, #botstuff, #foot { background-color: transparent !important; }
-    #searchform, #appbar, #top_nav, #top_nav > *, #foot, #botstuff { background-color: rgba(22, 13, 19, .82) !important; }
-    #search, #center_col { background: rgba(22, 13, 19, .72) !important; border-radius: 12px; padding: 12px !important; }
-    #search h3, #search a, #search span, #search div { text-shadow: 0 1px 2px rgba(0,0,0,.7); }
+    #searchform, #appbar, #top_nav, #top_nav > *, #foot, #botstuff { background-color: rgba(255, 255, 255, .95) !important; }
+    #search, #rso { background: rgba(255, 255, 255, .94) !important; border-radius: 12px; padding: 18px !important; color: #202124 !important; }
+    #search h3, #search a, #search span, #search div { text-shadow: none !important; }
   `;
 
   const addTheme = () => {
