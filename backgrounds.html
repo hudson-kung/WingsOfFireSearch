@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Backgrounds · Wings of Fire Search</title>
+    <style>
+      :root { font-family: Arial, Helvetica, sans-serif; color: #ffe9a6; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; background: #160d13; }
+      main { min-height: 100vh; margin-left: 240px; padding: 3.5rem clamp(1.25rem, 6vw, 5rem) 4rem; }
+      .settings-layout { max-width: 1100px; }
+      .sidebar { position: fixed; z-index: 2; inset: 0 auto 0 0; width: 240px; overflow: auto; padding: 1.5rem .8rem; border-right: 1px solid #8d6716; background: #160d13; box-shadow: 5px 0 20px rgba(0,0,0,.35); }
+      .sidebar-title { display: block; padding: 1rem .75rem .85rem; color: #e7ca7a; font-size: .75rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+      .sidebar a { display: block; margin: .25rem 0; padding: .8rem .75rem; border-radius: .45rem; color: #ffe9a6; text-decoration: none; font-weight: 700; }
+      .sidebar a:last-child { margin-bottom: .7rem; }.sidebar a:hover { background: #4d3511; }.sidebar a[aria-current="page"] { background: #f9c64a; color: #241608; }
+      h1 { font-size: clamp(2rem, 5vw, 3.25rem); letter-spacing: -.05em; margin: 0; }
+      .intro { color: #e7ca7a; font-size: 1rem; line-height: 1.5; margin: .75rem 0 2.25rem; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; }
+      .card { position: relative; min-height: 250px; overflow: hidden; border: 0; border-radius: 1rem; padding: 0; color: #fff; cursor: pointer; text-align: left; background: #202124; box-shadow: 0 5px 18px rgba(60,64,67,.16); transition: transform .18s, box-shadow .18s; }
+      .card:hover, .card:focus-visible { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(60,64,67,.25); outline: 3px solid #4285f4; outline-offset: 3px; }
+      .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 35%, rgba(0,0,0,.82)); }
+      .label { position: absolute; z-index: 1; right: 1rem; bottom: 1rem; left: 1rem; font-size: 1.25rem; font-weight: 700; text-shadow: 0 1px 3px #000; }
+      .chosen { display: none; position: absolute; z-index: 2; top: .8rem; right: .8rem; border-radius: 999px; background: #fff; color: #188038; font-size: .8rem; font-weight: 700; padding: .35rem .6rem; }
+      .card.selected .chosen { display: block; }
+      #notice { min-height: 1.5rem; margin: 1.4rem 0 0; color: #188038; font-weight: 600; }
+      @media (max-width: 620px) { main { margin-left: 0; }.sidebar { position: static; width: auto; display: flex; align-items: center; padding: .55rem 1rem; border-right: 0; border-bottom: 1px solid #8d6716; }.sidebar-title { display: none; }.sidebar a, .sidebar a:last-child { margin: 0; flex: 1; text-align: center; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="settings-layout">
+        <nav class="sidebar" aria-label="Settings navigation"><span class="sidebar-title">Settings</span><a href="index.html">&lt; Back</a><a href="settings.html">General</a><a href="backgrounds.html" aria-current="page">Backgrounds</a></nav>
+        <div>
+          <h1>Backgrounds</h1>
+          <p class="intro">Choose a background for your Wings of Fire Search home page. Your choice is saved on this device.</p>
+          <section class="grid" aria-label="Background choices">
+            <button class="card" data-image="assets/backgrounds/darkstalker.png" type="button"><img src="assets/backgrounds/darkstalker.png" alt="Darkstalker flying beneath red moons" /><span class="chosen">Selected</span><span class="label">Darkstalker</span></button>
+            <button class="card" data-image="assets/backgrounds/cricket.png" type="button"><img src="assets/backgrounds/cricket.png" alt="Cricket in a warmly lit hive" /><span class="chosen">Selected</span><span class="label">Cricket</span></button>
+            <button class="card" data-image="assets/backgrounds/blue.png" type="button"><img src="assets/backgrounds/blue.png" alt="Blue against a glowing sky" /><span class="chosen">Selected</span><span class="label">Blue</span></button>
+            <button class="card" data-image="assets/backgrounds/clearsight.png" type="button"><img src="assets/backgrounds/clearsight.png" alt="Clearsight among snowy mountains" /><span class="chosen">Selected</span><span class="label">Clearsight</span></button>
+          </section>
+          <p id="notice" aria-live="polite"></p>
+        </div>
+      </div>
+    </main>
+    <script>
+      const cards = [...document.querySelectorAll('.card')];
+      const current = localStorage.getItem('fanwing-background') || 'assets/backgrounds/darkstalker.png';
+      function select(image, name) {
+        localStorage.setItem('fanwing-background', image);
+        cards.forEach(card => card.classList.toggle('selected', card.dataset.image === image));
+        document.getElementById('notice').textContent = `${name} selected. Return to search to see it.`;
+      }
+      cards.forEach(card => { if (card.dataset.image === current) card.classList.add('selected'); card.addEventListener('click', () => select(card.dataset.image, card.querySelector('.label').textContent)); });
+    </script>
+  </body>
+</html>
