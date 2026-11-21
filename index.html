@@ -28,6 +28,7 @@
       input::placeholder { color: #f9c64a; font-weight: 700; opacity: 1; }
       .clear { display: none; border: 0; background: none; color: #70757a; cursor: pointer; font-size: 1.35rem; line-height: 1; padding: .2rem .45rem; }
       input:not(:placeholder-shown) + .clear { display: block; }
+      .videos { width: min(100%, 760px); margin-top: 2.4rem; }.videos h2 { margin: 0 0 .85rem; color: #f9c64a; font-family: 'Cinzel', Georgia, serif; font-size: 1.05rem; text-align: center; text-shadow: 0 1px 3px #000; }.video-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }.video-card { min-height: 105px; display: flex; flex-direction: column; justify-content: flex-end; padding: .8rem; border: 1px solid rgba(249,198,74,.7); border-radius: .7rem; background: linear-gradient(180deg, rgba(22,13,19,.24), rgba(22,13,19,.94)), url('assets/backgrounds/darkstalker.png') center / cover; color: #f9c64a; font-weight: 700; text-decoration: none; text-shadow: 0 1px 3px #000; transition: transform .15s, border-color .15s; }.video-card:hover { transform: translateY(-3px); border-color: #fff0a1; }.video-card span { display: block; margin-bottom: .25rem; font-size: .72rem; color: #fff1bd; }.video-card strong { font-size: .88rem; line-height: 1.2; }
       .actions { display: flex; justify-content: center; gap: .75rem; margin-top: 1.8rem; flex-wrap: wrap; }
       button { border: 1px solid #f9c64a; border-radius: .25rem; background: #f9c64a; color: #241608; cursor: pointer; font-size: .9rem; font-weight: 700; padding: .7rem 1rem; }
       button:hover { border-color: #fff0a1; background: #ffe08a; box-shadow: 0 1px 5px rgba(0,0,0,.45); }
@@ -51,6 +52,7 @@
           <button class="clear" id="clear-search" type="button" aria-label="Clear search">×</button>
         </label>
       </form>
+      <section class="videos" aria-labelledby="videos-title"><h2 id="videos-title">Random Wings of Fire videos</h2><div class="video-row" id="video-row"></div></section>
     </main>
     <script src="index.js"></script>
   </body>
