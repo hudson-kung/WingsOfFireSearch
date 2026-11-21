@@ -59,24 +59,31 @@
   };
 
   const replaceGoogleLogo = () => {
-    const logoLink = [...document.querySelectorAll('a')].find(link => {
-      const label = link.getAttribute('aria-label') || '';
-      const imageAlt = link.querySelector('img')?.alt || '';
-      return /google/i.test(label) || /google/i.test(imageAlt);
-    });
-    if (!logoLink || logoLink.dataset.wingsOfFireLogo === 'true') return;
+    if (document.documentElement.dataset.wingsOfFireLogoReplaced === 'true') return;
+    const logoLink = [...document.querySelectorAll('a')]
+      .filter(link => {
+        const label = link.getAttribute('aria-label') || '';
+        const imageAlt = link.querySelector('img')?.alt || '';
+        const bounds = link.getBoundingClientRect();
+        return (/google/i.test(label) || /google/i.test(imageAlt)) && bounds.width > 0 && bounds.height > 0;
+      })
+      .sort((first, second) => first.getBoundingClientRect().left - second.getBoundingClientRect().left)[0];
+    if (!logoLink) return;
 
+    document.documentElement.dataset.wingsOfFireLogoReplaced = 'true';
     logoLink.dataset.wingsOfFireLogo = 'true';
     logoLink.replaceChildren();
     Object.assign(logoLink.style, {
       display: 'block',
-      width: '60px',
-      height: '60px',
-      minWidth: '60px',
+      width: '52px',
+      height: '52px',
+      minWidth: '52px',
+      margin: '0 20px',
       backgroundImage: `url("${chrome.runtime.getURL('assets/fanwing-crest.png')}")`,
       backgroundSize: 'contain',
       backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
+      backgroundRepeat: 'no-repeat',
+      borderRadius: '50%'
     });
     logoLink.setAttribute('aria-label', 'Back to Wings of Fire Search');
     logoLink.addEventListener('click', event => {
