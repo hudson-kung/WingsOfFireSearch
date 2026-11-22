@@ -9,6 +9,11 @@
     html, body, main, header, nav, aside, [class*="bg-"] { background-color: transparent !important; }
     body > *:not(#wings-of-fire-chatgpt-background) { position: relative; z-index: 1; }
     body, body *, body *::before, body *::after { color: #f9c64a !important; text-shadow: 0 1px 3px #000 !important; }
+    form:has(textarea), form:has([contenteditable="true"]), #prompt-textarea, textarea, [contenteditable="true"] {
+      background: #160d13 !important;
+      border-color: #8d6716 !important;
+      color: #f9c64a !important;
+    }
   `;
 
   const clearLightSurfaces = root => {
