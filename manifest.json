@@ -15,12 +15,17 @@
       "matches": ["https://www.google.com/search*"],
       "js": ["google-results-background.js"],
       "run_at": "document_start"
+    },
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["youtube-background.js"],
+      "run_at": "document_start"
     }
   ],
   "web_accessible_resources": [
     {
       "resources": ["assets/backgrounds/darkstalker.png", "assets/fanwing-crest.png"],
-      "matches": ["https://www.google.com/*"]
+      "matches": ["https://www.google.com/*", "https://www.youtube.com/*"]
     }
   ],
   "icons": {

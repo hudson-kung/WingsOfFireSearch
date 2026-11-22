@@ -1,0 +1,26 @@
+(() => {
+  const background = document.createElement('div');
+  background.id = 'wings-of-fire-youtube-background';
+  background.style.cssText = 'position:fixed;inset:0;z-index:-1;background:center/cover fixed no-repeat;pointer-events:none';
+
+  const style = document.createElement('style');
+  style.id = 'wings-of-fire-youtube-style';
+  style.textContent = `
+    html, body, ytd-app, ytd-page-manager, ytd-browse, ytd-watch-flexy,
+    #page-manager, #content, #primary, #secondary, #columns, #masthead-container,
+    ytd-masthead, ytd-rich-grid-renderer, ytd-two-column-browse-results-renderer,
+    ytd-rich-item-renderer, ytd-video-renderer { background: transparent !important; }
+    body > *:not(#wings-of-fire-youtube-background) { position: relative; z-index: 1; }
+  `;
+
+  const applyTheme = () => {
+    if (!document.getElementById(background.id)) document.body.prepend(background);
+    if (!document.getElementById(style.id)) document.head.append(style);
+    chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/darkstalker.png' }, ({ fanwingBackground }) => {
+      background.style.backgroundImage = `url("${chrome.runtime.getURL(fanwingBackground)}")`;
+    });
+  };
+
+  if (document.body) applyTheme();
+  else document.addEventListener('DOMContentLoaded', applyTheme, { once: true });
+})();
