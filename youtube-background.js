@@ -1,5 +1,6 @@
 (() => {
   const background = document.createElement('div');
+  let activeBackground = 'assets/backgrounds/darkstalker.png';
   background.id = 'wings-of-fire-youtube-background';
   background.style.cssText = 'position:fixed;inset:0;z-index:-1;background:center/cover fixed no-repeat;pointer-events:none';
 
@@ -17,18 +18,31 @@
       box-shadow: none !important;
       backdrop-filter: none !important;
     }
-    button, tp-yt-paper-button, yt-button-shape, yt-button-shape button,
-    ytd-button-renderer, ytd-chip-cloud-chip-renderer, ytd-comments,
-    ytd-comment-thread-renderer, ytd-item-section-renderer, ytd-rich-item-renderer,
-    ytd-video-renderer, ytd-engagement-panel-section-list-renderer,
-    ytd-watch-metadata, ytd-video-primary-info-renderer, #panels, #related {
-      background-color: #160d13 !important;
-      border-color: #8d6716 !important;
-    }
     body > *:not(#wings-of-fire-youtube-background) { position: relative; z-index: 1; }
     body, body *, body *::before, body *::after { color: #f9c64a !important; text-shadow: 0 1px 3px #000 !important; }
     :root { --yt-spec-text-primary: #f9c64a !important; --yt-spec-text-secondary: #f9c64a !important; --yt-spec-call-to-action: #f9c64a !important; --yt-spec-base-background: transparent !important; --yt-spec-raised-background: transparent !important; }
   `;
+
+  const applyMastheadWallpaper = () => {
+    const masthead = document.querySelector('ytd-masthead');
+    if (!masthead) return;
+    const wallpaper = `url("${chrome.runtime.getURL(activeBackground)}")`;
+    masthead.style.setProperty('background-image', wallpaper, 'important');
+    masthead.style.setProperty('background-size', 'cover', 'important');
+    masthead.style.setProperty('background-position', 'center', 'important');
+    masthead.style.setProperty('background-attachment', 'fixed', 'important');
+    masthead.style.setProperty('background-color', 'transparent', 'important');
+    masthead.querySelectorAll('#background, #container, #frosted-glass, #scrim').forEach(element => {
+      element.style.setProperty('background', 'transparent', 'important');
+      element.style.setProperty('background-image', 'none', 'important');
+    });
+    if (masthead.shadowRoot && !masthead.shadowRoot.getElementById('wings-of-fire-masthead-style')) {
+      const mastheadStyle = document.createElement('style');
+      mastheadStyle.id = 'wings-of-fire-masthead-style';
+      mastheadStyle.textContent = '#background, #container, #frosted-glass, #scrim { background: transparent !important; background-image: none !important; }';
+      masthead.shadowRoot.append(mastheadStyle);
+    }
+  };
 
   const applyTheme = () => {
     [
@@ -42,12 +56,14 @@
       '--yt-spec-additive-background',
       '--ytd-masthead-background'
     ].forEach(variable => document.documentElement.style.setProperty(variable, 'transparent', 'important'));
-    ['--yt-spec-raised-background', '--yt-spec-menu-background', '--yt-spec-additive-background'].forEach(variable => document.documentElement.style.setProperty(variable, '#160d13', 'important'));
     if (!document.getElementById(background.id)) document.body.prepend(background);
     if (!document.getElementById(style.id)) document.head.append(style);
     chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/darkstalker.png' }, ({ fanwingBackground }) => {
+      activeBackground = fanwingBackground;
       background.style.backgroundImage = `url("${chrome.runtime.getURL(fanwingBackground)}")`;
+      applyMastheadWallpaper();
     });
+    new MutationObserver(applyMastheadWallpaper).observe(document.documentElement, { childList: true, subtree: true });
   };
 
   if (document.body) applyTheme();
