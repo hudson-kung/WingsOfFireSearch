@@ -65,6 +65,20 @@
     }
   };
 
+  const clearLightSurfaces = root => {
+    const elements = root.querySelectorAll ? [root, ...root.querySelectorAll('*')] : [];
+    elements.forEach(element => {
+      if (!(element instanceof HTMLElement) || element.id === background.id) return;
+      const match = getComputedStyle(element).backgroundColor.match(/rgba?\(([^)]+)\)/);
+      if (!match) return;
+      const [red, green, blue, alpha = '1'] = match[1].split(',').map(value => Number(value.trim()));
+      if (red > 220 && green > 220 && blue > 220 && alpha > 0.45) {
+        element.style.setProperty('background', 'transparent', 'important');
+        element.style.setProperty('box-shadow', 'none', 'important');
+      }
+    });
+  };
+
   const applyTheme = () => {
     [
       '--yt-spec-base-background',
@@ -84,10 +98,14 @@
       background.style.backgroundImage = `url("${chrome.runtime.getURL(fanwingBackground)}")`;
       applyMastheadWallpaper();
       applyChipBarWallpaper();
+      clearLightSurfaces(document.body);
     });
-    new MutationObserver(() => {
+    new MutationObserver(records => {
       applyMastheadWallpaper();
       applyChipBarWallpaper();
+      records.forEach(record => record.addedNodes.forEach(node => {
+        if (node.nodeType === Node.ELEMENT_NODE) clearLightSurfaces(node);
+      }));
     }).observe(document.documentElement, { childList: true, subtree: true });
   };
 
