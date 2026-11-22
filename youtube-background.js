@@ -44,6 +44,27 @@
     }
   };
 
+  const applyChipBarWallpaper = () => {
+    const chipBar = document.querySelector('ytd-feed-filter-chip-bar-renderer');
+    if (!chipBar) return;
+    const wallpaper = `url("${chrome.runtime.getURL(activeBackground)}")`;
+    chipBar.style.setProperty('background-image', wallpaper, 'important');
+    chipBar.style.setProperty('background-size', 'cover', 'important');
+    chipBar.style.setProperty('background-position', 'center', 'important');
+    chipBar.style.setProperty('background-attachment', 'fixed', 'important');
+    chipBar.style.setProperty('background-color', 'transparent', 'important');
+    chipBar.querySelectorAll('#chips-wrapper, #chips, yt-horizontal-list-renderer, #left-arrow, #right-arrow').forEach(element => {
+      element.style.setProperty('background', 'transparent', 'important');
+      element.style.setProperty('background-image', 'none', 'important');
+    });
+    if (chipBar.shadowRoot && !chipBar.shadowRoot.getElementById('wings-of-fire-chip-bar-style')) {
+      const chipStyle = document.createElement('style');
+      chipStyle.id = 'wings-of-fire-chip-bar-style';
+      chipStyle.textContent = '#chips-wrapper, #chips, #left-arrow, #right-arrow { background: transparent !important; background-image: none !important; }';
+      chipBar.shadowRoot.append(chipStyle);
+    }
+  };
+
   const applyTheme = () => {
     [
       '--yt-spec-base-background',
@@ -62,8 +83,12 @@
       activeBackground = fanwingBackground;
       background.style.backgroundImage = `url("${chrome.runtime.getURL(fanwingBackground)}")`;
       applyMastheadWallpaper();
+      applyChipBarWallpaper();
     });
-    new MutationObserver(applyMastheadWallpaper).observe(document.documentElement, { childList: true, subtree: true });
+    new MutationObserver(() => {
+      applyMastheadWallpaper();
+      applyChipBarWallpaper();
+    }).observe(document.documentElement, { childList: true, subtree: true });
   };
 
   if (document.body) applyTheme();
