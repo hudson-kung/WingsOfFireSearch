@@ -70,9 +70,10 @@
     elements.forEach(element => {
       if (!(element instanceof HTMLElement) || element.id === background.id) return;
       const match = getComputedStyle(element).backgroundColor.match(/rgba?\(([^)]+)\)/);
-      if (!match) return;
-      const [red, green, blue, alpha = '1'] = match[1].split(',').map(value => Number(value.trim()));
-      if (red > 220 && green > 220 && blue > 220 && alpha > 0.45) {
+      const [red, green, blue, alpha = '0'] = match ? match[1].split(',').map(value => Number(value.trim())) : [];
+      const bounds = element.getBoundingClientRect();
+      const isWideGradientSurface = getComputedStyle(element).backgroundImage !== 'none' && bounds.width > innerWidth * .7 && bounds.height > 20 && bounds.height < 110;
+      if ((red > 220 && green > 220 && blue > 220 && alpha > 0.45) || isWideGradientSurface) {
         element.style.setProperty('background', 'transparent', 'important');
         element.style.setProperty('box-shadow', 'none', 'important');
       }
