@@ -27,7 +27,7 @@
       "run_at": "document_start"
     },
     {
-      "matches": ["https://chatgpt.com/*"],
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
       "js": ["chatgpt-background.js"],
       "run_at": "document_start"
     }
@@ -41,7 +41,7 @@
         "assets/backgrounds/clearsight.png",
         "assets/fanwing-crest.png"
       ],
-      "matches": ["https://www.google.com/*", "https://www.youtube.com/*", "https://www.roblox.com/*", "https://chatgpt.com/*"]
+      "matches": ["https://www.google.com/*", "https://www.youtube.com/*", "https://www.roblox.com/*", "https://chatgpt.com/*", "https://chat.openai.com/*"]
     }
   ],
   "icons": {

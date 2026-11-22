@@ -1,7 +1,7 @@
 (() => {
   const background = document.createElement('div');
   background.id = 'wings-of-fire-chatgpt-background';
-  background.style.cssText = 'position:fixed;inset:0;z-index:-1;background:center/cover fixed no-repeat;pointer-events:none';
+  background.style.cssText = 'position:fixed;inset:0;z-index:0;background:center/cover fixed no-repeat;pointer-events:none';
 
   const style = document.createElement('style');
   style.id = 'wings-of-fire-chatgpt-style';
