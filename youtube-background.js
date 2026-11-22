@@ -23,6 +23,17 @@
   `;
 
   const applyTheme = () => {
+    [
+      '--yt-spec-base-background',
+      '--yt-spec-raised-background',
+      '--yt-spec-menu-background',
+      '--yt-spec-general-background-a',
+      '--yt-spec-general-background-b',
+      '--yt-spec-general-background-c',
+      '--yt-spec-brand-background-solid',
+      '--yt-spec-additive-background',
+      '--ytd-masthead-background'
+    ].forEach(variable => document.documentElement.style.setProperty(variable, 'transparent', 'important'));
     if (!document.getElementById(background.id)) document.body.prepend(background);
     if (!document.getElementById(style.id)) document.head.append(style);
     chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/darkstalker.png' }, ({ fanwingBackground }) => {
