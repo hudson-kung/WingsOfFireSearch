@@ -10,9 +10,16 @@
     #page-manager, #content, #primary, #secondary, #columns, #masthead-container,
     ytd-masthead, ytd-rich-grid-renderer, ytd-two-column-browse-results-renderer,
     ytd-rich-item-renderer, ytd-video-renderer { background: transparent !important; }
+    ytd-masthead#masthead, #masthead-container, ytd-masthead #container,
+    ytd-masthead #background, ytd-masthead #frosted-glass, ytd-masthead #scrim {
+      background: transparent !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+    }
     body > *:not(#wings-of-fire-youtube-background) { position: relative; z-index: 1; }
     body, body *, body *::before, body *::after { color: #f9c64a !important; text-shadow: 0 1px 3px #000 !important; }
-    :root { --yt-spec-text-primary: #f9c64a !important; --yt-spec-text-secondary: #f9c64a !important; --yt-spec-call-to-action: #f9c64a !important; }
+    :root { --yt-spec-text-primary: #f9c64a !important; --yt-spec-text-secondary: #f9c64a !important; --yt-spec-call-to-action: #f9c64a !important; --yt-spec-base-background: transparent !important; --yt-spec-raised-background: transparent !important; }
   `;
 
   const applyTheme = () => {
