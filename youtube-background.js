@@ -11,6 +11,8 @@
     ytd-masthead, ytd-rich-grid-renderer, ytd-two-column-browse-results-renderer,
     ytd-rich-item-renderer, ytd-video-renderer { background: transparent !important; }
     body > *:not(#wings-of-fire-youtube-background) { position: relative; z-index: 1; }
+    body, body *, body *::before, body *::after { color: #f9c64a !important; text-shadow: 0 1px 3px #000 !important; }
+    :root { --yt-spec-text-primary: #f9c64a !important; --yt-spec-text-secondary: #f9c64a !important; --yt-spec-call-to-action: #f9c64a !important; }
   `;
 
   const applyTheme = () => {
