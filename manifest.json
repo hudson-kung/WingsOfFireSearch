@@ -25,6 +25,11 @@
       "matches": ["https://www.roblox.com/*"],
       "js": ["roblox-background.js"],
       "run_at": "document_start"
+    },
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["chatgpt-background.js"],
+      "run_at": "document_start"
     }
   ],
   "web_accessible_resources": [
@@ -36,7 +41,7 @@
         "assets/backgrounds/clearsight.png",
         "assets/fanwing-crest.png"
       ],
-      "matches": ["https://www.google.com/*", "https://www.youtube.com/*", "https://www.roblox.com/*"]
+      "matches": ["https://www.google.com/*", "https://www.youtube.com/*", "https://www.roblox.com/*", "https://chatgpt.com/*"]
     }
   ],
   "icons": {
