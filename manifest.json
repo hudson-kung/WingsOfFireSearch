@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "SilkSearch",
+  "name": "Wings of Fire Search",
   "version": "1.0.0",
   "description": "A Wings of Fire themed search page for every new tab.",
   "permissions": ["tabs", "storage"],

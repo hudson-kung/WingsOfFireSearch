@@ -1,6 +1,6 @@
-# SilkSearch
+# Wings of Fire Search
 
-A Manifest V3 Chrome extension that replaces the New Tab page with SilkSearch.
+A Manifest V3 Chrome extension that replaces the New Tab page with Wings of Fire Search.
 
 ## Install from the ZIP
 
