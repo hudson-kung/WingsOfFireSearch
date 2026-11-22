@@ -105,7 +105,7 @@
       backgroundRepeat: 'no-repeat',
       borderRadius: '50%'
     });
-    logoLink.setAttribute('aria-label', 'Back to Wings of Fire Search');
+    logoLink.setAttribute('aria-label', 'Back to SilkSearch');
     logoLink.addEventListener('click', event => {
       event.preventDefault();
       chrome.runtime.sendMessage({ type: 'open-wings-of-fire-home' });
