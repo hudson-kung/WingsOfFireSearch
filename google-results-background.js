@@ -10,7 +10,7 @@
     'background-position:center',
     'background-attachment:fixed'
   ].join(';');
-  chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/darkstalker.png' }, ({ fanwingBackground }) => {
+  chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/sundew.png' }, ({ fanwingBackground }) => {
     background.style.backgroundImage = `url("${chrome.runtime.getURL(fanwingBackground)}")`;
   });
 

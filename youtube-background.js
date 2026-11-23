@@ -1,6 +1,6 @@
 (() => {
   const background = document.createElement('div');
-  let activeBackground = 'assets/backgrounds/darkstalker.png';
+  let activeBackground = 'assets/backgrounds/sundew.png';
   background.id = 'wings-of-fire-youtube-background';
   background.style.cssText = 'position:fixed;inset:0;z-index:-1;background:center/cover fixed no-repeat;pointer-events:none';
 
@@ -94,7 +94,7 @@
     ].forEach(variable => document.documentElement.style.setProperty(variable, 'transparent', 'important'));
     if (!document.getElementById(background.id)) document.body.prepend(background);
     if (!document.getElementById(style.id)) document.head.append(style);
-    chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/darkstalker.png' }, ({ fanwingBackground }) => {
+    chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/sundew.png' }, ({ fanwingBackground }) => {
       activeBackground = fanwingBackground;
       background.style.backgroundImage = `url("${chrome.runtime.getURL(fanwingBackground)}")`;
       applyMastheadWallpaper();

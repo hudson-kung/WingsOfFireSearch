@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Wings of Fire Search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Wings of Fire themed search page for every new tab.",
   "permissions": ["tabs", "storage"],
   "background": {
@@ -36,6 +36,7 @@
     {
       "resources": [
         "assets/backgrounds/darkstalker.png",
+        "assets/backgrounds/sundew.png",
         "assets/backgrounds/cricket.png",
         "assets/backgrounds/blue.png",
         "assets/backgrounds/clearsight.png",
