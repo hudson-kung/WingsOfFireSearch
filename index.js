@@ -2,7 +2,7 @@ const form = document.getElementById('search-form');
 const input = document.getElementById('query');
 const storageKey = 'fanwing-settings';
 const preferences = JSON.parse(localStorage.getItem(storageKey) || '{"newTab":false,"luckyDefault":false}');
-const background = localStorage.getItem('fanwing-background') || 'assets/backgrounds/sundew.png';
+const background = localStorage.getItem('fanwing-background') || 'assets/backgrounds/darkstalker.png';
 
 document.body.style.backgroundImage = `url("${background}")`;
 chrome.storage.local.get({ fanwingBackground: background }, ({ fanwingBackground }) => {

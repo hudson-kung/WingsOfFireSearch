@@ -1,5 +1,5 @@
 const cards = [...document.querySelectorAll('.card')];
-const current = localStorage.getItem('fanwing-background') || 'assets/backgrounds/sundew.png';
+const current = localStorage.getItem('fanwing-background') || 'assets/backgrounds/darkstalker.png';
 
 function select(image, name) {
   localStorage.setItem('fanwing-background', image);

@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.local.set({ fanwingBackground: 'assets/backgrounds/sundew.png' });
+  chrome.storage.local.set({ fanwingBackground: 'assets/backgrounds/darkstalker.png' });
 });
 
 chrome.runtime.onMessage.addListener((message, sender) => {

@@ -29,7 +29,7 @@
   const applyTheme = () => {
     if (!document.getElementById(background.id)) document.body.prepend(background);
     if (!document.getElementById(style.id)) document.head.append(style);
-    chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/sundew.png' }, ({ fanwingBackground }) => {
+    chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/darkstalker.png' }, ({ fanwingBackground }) => {
       background.style.backgroundImage = `url("${chrome.runtime.getURL(fanwingBackground)}")`;
     });
     clearLightSurfaces(document.body);

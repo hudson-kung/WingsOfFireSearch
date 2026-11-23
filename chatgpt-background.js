@@ -10,7 +10,7 @@
     body > *:not(#wings-of-fire-chatgpt-background) { position: relative; z-index: 1; }
     body, body *, body *::before, body *::after { color: #f9c64a !important; text-shadow: 0 1px 3px #000 !important; }
     form:has(textarea), form:has([contenteditable="true"]), #prompt-textarea, textarea, [contenteditable="true"] {
-      background: #160d13 !important;
+      background: transparent !important;
       border-color: #8d6716 !important;
       color: #f9c64a !important;
     }
@@ -33,7 +33,7 @@
   const applyTheme = () => {
     if (!document.getElementById(background.id)) document.body.prepend(background);
     if (!document.getElementById(style.id)) document.head.append(style);
-    chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/sundew.png' }, ({ fanwingBackground }) => {
+    chrome.storage.local.get({ fanwingBackground: 'assets/backgrounds/darkstalker.png' }, ({ fanwingBackground }) => {
       background.style.backgroundImage = `url("${chrome.runtime.getURL(fanwingBackground)}")`;
     });
     clearLightSurfaces(document.body);
